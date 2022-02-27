@@ -70,6 +70,7 @@ selectChair(chair: IChair):void{
 }
 book(): void{
   if(this.currentAccount?.login!==undefined){
+    console.log(this.bookedChairs)
 
 this.bookingserv.bookAllChairs(this.bookedChairs,this.currentAccount?.login).subscribe(response=>
   {

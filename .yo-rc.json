@@ -41,7 +41,7 @@
     "clientPackageManager": "npm",
     "languages": ["es", "en", "fr", "de", "it", "pt-pt"],
     "enableGradleEnterprise": false,
-    "lastLiquibaseTimestamp": 1643313136000,
+    "lastLiquibaseTimestamp": 1645986634000,
     "entities": ["Hall", "Movie", "Moviefunction", "Booking", "Chair"]
   }
 }

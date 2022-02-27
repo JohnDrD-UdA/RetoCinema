@@ -47,7 +47,9 @@
       "confirmpassword.label": "Confirmação de nova palavra-passe",
       "confirmpassword.placeholder": "Confirme a nova palavra-passe",
       "email.label": "Email",
-      "email.placeholder": "O seu email"
+      "email.placeholder": "O seu email",
+      "identification_type.label":"Your Id type",
+      "identification.label":"Yuor ID number"
     },
     "messages": {
       "info": {

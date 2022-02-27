@@ -46,7 +46,11 @@ public class AdminUserDTO {
 
     private Instant lastModifiedDate;
 
+    private String identification;
+    private String identification_type;
+
     private Set<String> authorities;
+
 
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
@@ -66,6 +70,24 @@ public class AdminUserDTO {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+        this.identification=user.getIdentification();
+        this.identification_type=user.getIdentification_type();
+    }
+    
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getIdentification_type() {
+        return identification_type;
+    }
+
+    public void setIdentification_type(String identification_type) {
+        this.identification_type = identification_type;
     }
 
     public Long getId() {

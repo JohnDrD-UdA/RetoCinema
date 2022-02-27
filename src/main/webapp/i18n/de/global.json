@@ -37,6 +37,7 @@
       },
       "language": "Sprache"
     },
+    "Billboard":{},
     "form": {
       "username.label": "Benutzername",
       "username.placeholder": "Ihr Benutzername",
@@ -47,7 +48,9 @@
       "confirmpassword.label": "Neues Passwort bestätigen",
       "confirmpassword.placeholder": "Bestätigen Sie Ihr neues Passwort",
       "email.label": "Email Adresse",
-      "email.placeholder": "Ihre Email Adresse"
+      "email.placeholder": "Ihre Email Adresse",
+      "identification_type.label":"Your Id type",
+      "identification.label":"Yuor ID number"
     },
     "messages": {
       "info": {

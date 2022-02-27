@@ -78,6 +78,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @NotNull
+    @Size(min = 6)
+    @Column(name = "identification", nullable = false, unique = true)
+    private String identification;
+
+    @NotNull
+    @Column(name = "identification_type", nullable = false)
+    private String identification_type;
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -87,14 +95,48 @@ public class User extends AbstractAuditingEntity implements Serializable {
     )
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
+    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
-        return id;
+        return this.id;
+    }
+
+    public User id(Long id) {
+        this.setId(id);
+        return this;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getIdentification() {
+        return this.identification;
+    }
+
+    public User identification(String identification) {
+        this.setIdentification(identification);
+        return this;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getIdentification_type() {
+        return this.identification_type;
+    }
+
+    public User identification_type(String identification_type) {
+        this.setIdentification_type(identification_type);
+        return this;
+    }
+
+    public void setIdentification_type(String identification_type) {
+        this.identification_type = identification_type;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     public String getLogin() {
         return login;
@@ -222,6 +264,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", identification='" + getIdentification() + "'" +
+            ", identification_type='" + getIdentification_type() + "'"+
             "}";
     }
 }

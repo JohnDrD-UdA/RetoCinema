@@ -9,15 +9,12 @@ import { IHall } from '../hall.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { HallService } from '../service/hall.service';
 import { HallDeleteDialogComponent } from '../delete/hall-delete-dialog.component';
-import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/auth/account.model';
 
 @Component({
   selector: 'jhi-hall',
   templateUrl: './hall.component.html',
 })
 export class HallComponent implements OnInit {
-  currentAccount: Account | null = null;
   halls?: IHall[];
   isLoading = false;
   totalItems = 0;
@@ -31,8 +28,7 @@ export class HallComponent implements OnInit {
     protected hallService: HallService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal,
-    private accountService: AccountService
+    protected modalService: NgbModal
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -58,13 +54,6 @@ export class HallComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.identity().subscribe(account => (this.currentAccount = account));
-    if(this.accountService.isAuthenticated()){
-      const auth=this.currentAccount?.authorities
-      if(auth?.length===1 ){
-        this.router.navigate([''])
-      }
-    }
     this.handleNavigation();
   }
 

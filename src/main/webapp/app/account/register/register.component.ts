@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
@@ -33,8 +33,10 @@ export class RegisterComponent implements AfterViewInit {
       ],
     ],
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50),customCheck(/(?=.*[0-9]{1})$/),customCheck(/(?=.*[a-z]{1})$/),customCheck(/(?=.*[A-Z]{1})$/)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+    identification: [null, [Validators.required, Validators.minLength(6)]],
+    identification_type: [null, [Validators.required]],
   });
 
   constructor(private translateService: TranslateService, private registerService: RegisterService, private fb: FormBuilder,private router:Router) {}
@@ -57,8 +59,10 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       const login = this.registerForm.get(['login'])!.value;
       const email = this.registerForm.get(['email'])!.value;
+      const identification= this.registerForm.get(['identification'])!.value;
+      const identification_type= this.registerForm.get(['identification_type'])!.value;
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
+        .save({ login, email, password,identification,identification_type, langKey: this.translateService.currentLang })
         .subscribe({ next: () => (this.successM()) , error: response => this.processError(response) });
     }
   }
@@ -87,3 +91,8 @@ export class RegisterComponent implements AfterViewInit {
     this.router.navigate([''])
   }
 }
+export function customCheck(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = nameRe.test(control.value);
+    return forbidden ? {forbiddenName: {value: control.value}} : null;
+  };}

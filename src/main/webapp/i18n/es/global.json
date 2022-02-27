@@ -47,7 +47,10 @@
       "confirmpassword.label": "Confirmación de la nueva contraseña",
       "confirmpassword.placeholder": "Confirmación de la nueva contraseña",
       "email.label": "Correo electrónico",
-      "email.placeholder": "Su correo electrónico"
+      "email.placeholder": "Su correo electrónico",
+      "identification_type.label":"Ingrese su tipo de documento",
+      "identification.label":"Ingrese su numero de documento "
+
     },
     "messages": {
       "info": {

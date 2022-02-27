@@ -47,7 +47,9 @@
       "confirmpassword.label": "Conferma nuova password",
       "confirmpassword.placeholder": "Conferma nuova password",
       "email.label": "Email",
-      "email.placeholder": "Il tuo indirizzo email"
+      "email.placeholder": "Il tuo indirizzo email",
+      "identification_type.label":"Your Id type",
+      "identification.label":"Yuor ID number"
     },
     "messages": {
       "info": {
