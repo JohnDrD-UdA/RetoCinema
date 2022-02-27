@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="movie">
+      <h2 data-cy="movieDetailsHeading"><span jhiTranslate="cinemasCidenetApp.movie.detail.title">Movie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ movie.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.name">Name</span></dt>
+        <dd>
+          <span>{{ movie.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.gendre">Gendre</span></dt>
+        <dd>
+          <span>{{ movie.gendre }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.synopsis">Synopsis</span></dt>
+        <dd>
+          <span>{{ movie.synopsis }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.movie_format">Movie Format</span></dt>
+        <dd>
+          <span>{{ movie.movie_format }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.movie_length">Movie Length</span></dt>
+        <dd>
+          <span>{{ movie.movie_length }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.movie.poster">Poster</span></dt>
+        <dd>
+          <div *ngIf="movie.poster">
+            <a (click)="openFile(movie.poster, movie.posterContentType)">
+              <img [src]="'data:' + movie.posterContentType + ';base64,' + movie.poster" style="max-width: 100%" alt="movie image" />
+            </a>
+            {{ movie.posterContentType }}, {{ byteSize(movie.poster) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/movie', movie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

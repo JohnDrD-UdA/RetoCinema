@@ -1,0 +1,119 @@
+<div>
+  <h2 id="page-heading" data-cy="MoviefunctionHeading">
+    <span jhiTranslate="cinemasCidenetApp.moviefunction.home.title">Moviefunctions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="cinemasCidenetApp.moviefunction.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-moviefunction"
+        [routerLink]="['/moviefunction/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="cinemasCidenetApp.moviefunction.home.createLabel"> Create a new Moviefunction </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="moviefunctions?.length === 0">
+    <span jhiTranslate="cinemasCidenetApp.moviefunction.home.notFound">No moviefunctions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="moviefunctions && moviefunctions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="movie_date_time">
+            <span jhiTranslate="cinemasCidenetApp.moviefunction.movie_date_time">Movie Date Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="active_movie_function">
+            <span jhiTranslate="cinemasCidenetApp.moviefunction.active_movie_function">Active Movie Function</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="movie.id">
+            <span jhiTranslate="cinemasCidenetApp.moviefunction.movie">Movie</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hall.id">
+            <span jhiTranslate="cinemasCidenetApp.moviefunction.hall">Hall</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let moviefunction of moviefunctions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/moviefunction', moviefunction.id, 'view']">{{ moviefunction.id }}</a>
+          </td>
+          <td>{{ moviefunction.movie_date_time }}</td>
+          <td>{{ moviefunction.active_movie_function }}</td>
+          <td>
+            <div *ngIf="moviefunction.movie">
+              <a [routerLink]="['/movie', moviefunction.movie?.id, 'view']">{{ moviefunction.movie?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="moviefunction.hall">
+              <a [routerLink]="['/hall', moviefunction.hall?.id, 'view']">{{ moviefunction.hall?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/moviefunction', moviefunction.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/moviefunction', moviefunction.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(moviefunction)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="moviefunctions && moviefunctions.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

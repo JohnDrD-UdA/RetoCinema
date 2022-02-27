@@ -2,8 +2,10 @@ package com.cinema.service;
 
 import com.cinema.config.Constants;
 import com.cinema.domain.Authority;
+import com.cinema.domain.Booking;
 import com.cinema.domain.User;
 import com.cinema.repository.AuthorityRepository;
+import com.cinema.repository.BookingRepository;
 import com.cinema.repository.UserRepository;
 import com.cinema.security.AuthoritiesConstants;
 import com.cinema.security.SecurityUtils;
@@ -15,6 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,10 +41,16 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    private final BookingRepository bookingRepository;
+
+    @Autowired
+    private BookingService bookingService;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,BookingRepository bookingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.bookingRepository=bookingRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -205,6 +214,10 @@ public class UserService {
         userRepository
             .findOneByLogin(login)
             .ifPresent(user -> {
+                List<Booking> bookings=bookingRepository.findByLBookings(login);
+                for (Booking booking : bookings) {
+                    bookingService.delete(booking.getId());
+                }
                 userRepository.delete(user);
                 log.debug("Deleted User: {}", user);
             });
@@ -293,5 +306,9 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
+    }
+
+    public User findOneByLOgIn(String login){
+        return userRepository.findOneByLOgin(login);
     }
 }

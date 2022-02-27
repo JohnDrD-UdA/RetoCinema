@@ -1,0 +1,185 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-movie-heading" data-cy="MovieCreateUpdateHeading" jhiTranslate="cinemasCidenetApp.movie.home.createOrEditLabel">
+        Create or edit a Movie
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.gendre" for="field_gendre">Gendre</label>
+          <input type="text" class="form-control" name="gendre" id="field_gendre" data-cy="gendre" formControlName="gendre" />
+          <div *ngIf="editForm.get('gendre')!.invalid && (editForm.get('gendre')!.dirty || editForm.get('gendre')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gendre')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.synopsis" for="field_synopsis">Synopsis</label>
+          <input type="text" class="form-control" name="synopsis" id="field_synopsis" data-cy="synopsis" formControlName="synopsis" />
+          <div *ngIf="editForm.get('synopsis')!.invalid && (editForm.get('synopsis')!.dirty || editForm.get('synopsis')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('synopsis')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('synopsis')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 250 }"
+            >
+              This field cannot be longer than 250 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.movie_format" for="field_movie_format"
+            >Movie Format</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="movie_format"
+            id="field_movie_format"
+            data-cy="movie_format"
+            formControlName="movie_format"
+          />
+          <div
+            *ngIf="editForm.get('movie_format')!.invalid && (editForm.get('movie_format')!.dirty || editForm.get('movie_format')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('movie_format')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('movie_format')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 10 }"
+            >
+              This field cannot be longer than 10 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.movie_length" for="field_movie_length"
+            >Movie Length</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="movie_length"
+            id="field_movie_length"
+            data-cy="movie_length"
+            formControlName="movie_length"
+          />
+          <div
+            *ngIf="editForm.get('movie_length')!.invalid && (editForm.get('movie_length')!.dirty || editForm.get('movie_length')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('movie_length')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('movie_length')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              This field cannot be longer than 20 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="cinemasCidenetApp.movie.poster" for="field_poster">Poster</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('posterContentType')!.value + ';base64,' + editForm.get('poster')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('poster')!.value"
+              alt="movie image"
+            />
+            <div *ngIf="editForm.get('poster')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('posterContentType')!.value }}, {{ byteSize(editForm.get('poster')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('poster', 'posterContentType', 'file_poster')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_poster"
+              data-cy="poster"
+              (change)="setFileData($event, 'poster', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="poster" id="field_poster" data-cy="poster" formControlName="poster" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="posterContentType"
+            id="field_posterContentType"
+            formControlName="posterContentType"
+          />
+          <div *ngIf="editForm.get('poster')!.invalid && (editForm.get('poster')!.dirty || editForm.get('poster')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('poster')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "cinemasCidenetApp": {
+    "chair": {
+      "home": {
+        "title": "Chairs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Chair",
+        "createOrEditLabel": "Genera o modifica un Chair",
+        "notFound": "No Chairs found"
+      },
+      "created": "&Egrave; stato generato un nuovo Chair con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Chair identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Chair con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Chair {{ id }}?"
+      },
+      "detail": {
+        "title": "Chair"
+      },
+      "id": "ID",
+      "location": "Location",
+      "avaible_chair": "Avaible Chair",
+      "booking": "Booking",
+      "moviefunction": "Moviefunction"
+    }
+  }
+}

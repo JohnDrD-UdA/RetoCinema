@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="hall">
+      <h2 data-cy="hallDetailsHeading"><span jhiTranslate="cinemasCidenetApp.hall.detail.title">Hall</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ hall.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.hall.cols_hall">Cols Hall</span></dt>
+        <dd>
+          <span>{{ hall.cols_hall }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.hall.rows_hall">Rows Hall</span></dt>
+        <dd>
+          <span>{{ hall.rows_hall }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.hall.name">Name</span></dt>
+        <dd>
+          <span>{{ hall.name }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/hall', hall.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

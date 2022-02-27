@@ -1,0 +1,49 @@
+<div class="card" style="height: max-content; width: 98%;">
+    <div class="modal-header">
+        <h4 class="modal-title" >Plataforma de reservas</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <form name="chairsForm" role="form" [formGroup]="chairsForm">
+            <div class="form-group" style="width: 50%;" >
+                <label class="form-control-label" for="Funciones">Funciones</label>
+                <select class="form-control" id="FunctionM" formControlName="Funciones_">
+                    <option *ngFor="let f of funtions" value={{f.id}}>{{f.movie_date_time}}</option>
+                </select>
+            </div>
+        </form>
+        <button   class=" btn btn-info" (click)="getBookings()">
+            <fa-icon icon="sync" [fixedWidth]="true"></fa-icon>
+            <span>Buscar</span>
+            </button>
+        <div *ngIf="ready" style="height:fit-content; width: 100%; padding: 10px;">
+            <div>
+                <div class="card" style="text-align: center; padding: 10px; border: 5px rgb(1, 16, 228) solid; border-radius: 100px;" >
+                    <h5 class="card-title text-md-center">Pantalla</h5>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row" *ngFor="let i of chairs" style="padding: 10px;">
+                    <div
+                    class="col"
+                    *ngFor="let Booking of i"
+                    style="padding: 0px; margin-bottom: 5px; height: max-content; width: 100%;">
+                    <button class="btn btn-md btn-primary" [disabled]="Booking.booking!=null && !this.bookedChairs.includes(Booking)"  style="width: 100%;" (click)="selectChair(Booking)"
+                    [ngClass]="{'btn-primary':!this.bookedChairs.includes(Booking), 'btn-success':this.bookedChairs.includes(Booking), 'btn-danger':Booking.booking!=null && !this.bookedChairs.includes(Booking)}"
+                    >
+                        <fa-icon icon="user" [fixedWidth]="true"></fa-icon>  
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <div style="align-items: center; text-align: center;">
+                <button class="btn btn-success"  style="margin: auto;" [disabled]="this.bookedChairs.length===0" (click)="book()">
+                    <fa-icon icon="check" [fixedWidth]="true"></fa-icon>
+                    <span>Enviar</span>
+                </button>
+                <p style="padding: 10px; ">Costo:{{getCost()}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -35,6 +35,7 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    this.currentAccount?.authorities
     this.handleNavigation();
   }
 

@@ -1,7 +1,12 @@
 package com.cinema.service;
 
+import com.cinema.domain.Chair;
+import com.cinema.domain.Movie;
 import com.cinema.domain.User;
+import com.cinema.service.dto.MovieDTO;
+
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Locale;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -92,6 +97,21 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 
+    public void sendEmailFromTemplate(User user,MovieDTO movie, String templateName, String titleKey){
+        if (user.getEmail() == null) {
+            log.debug("Email doesn't exist for user '{}'", user.getLogin());
+            return;
+        }
+        if(movie==null){ log.debug("Pelicula no enviada {}",movie); return;}
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable("Movie", movie);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
@@ -108,5 +128,10 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+    @Async
+    public void sendTestEmail(User user, MovieDTO movie){
+        log.debug("A test Email was requested to '{}'", user.getEmail());
+        sendEmailFromTemplate(user,movie, "mail/testEmail", "email.test.title");
     }
 }

@@ -1,0 +1,28 @@
+<div class="container">
+        <div class="row">
+            <div *ngFor="let Movie of movies; index as i" class="col-md-4" style="width: max-content" >
+                <div class="card movContainer border border-primary rounded">
+                    <h4 class="card-title  border-bottom border-light">{{Movie.name}}</h4>
+                    <img style="height: 300px; width: 100%; margin: 5px;" class="card-img-top border rounded" [src]="'data:' + Movie.posterContentType + ';base64,' + Movie.poster">
+                
+                        <div class="card-body" >
+                        <p style="width: 100%; text-align: justify; font-size: 16px; white-space: normal;" class="card-text">{{Movie.synopsis}}</p>
+                         <div class="row card-text">
+                          <span  class=" col littleBox"> Duracion: {{Movie.movie_length}}</span>
+                          <span  class="col littleBox"> Genero: {{Movie.gendre}}</span>
+                          <span  class="col littleBox">Formatos: {{Movie.movie_format}}</span>
+                         </div>
+                        </div>
+                        <button  class="btn butonM" (click)="book(Movie)">
+                            <fa-icon icon="calendar-alt" [fixedWidth]="true"></fa-icon>
+                            <span>Reservar</span>
+                            </button>
+                
+                
+                    
+                    
+                
+                </div>
+            </div>
+        </div>
+</div>

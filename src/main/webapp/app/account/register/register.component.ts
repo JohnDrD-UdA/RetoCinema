@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { RegisterService } from './register.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -35,7 +37,7 @@ export class RegisterComponent implements AfterViewInit {
     confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
   });
 
-  constructor(private translateService: TranslateService, private registerService: RegisterService, private fb: FormBuilder) {}
+  constructor(private translateService: TranslateService, private registerService: RegisterService, private fb: FormBuilder,private router:Router) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
@@ -57,11 +59,15 @@ export class RegisterComponent implements AfterViewInit {
       const email = this.registerForm.get(['email'])!.value;
       this.registerService
         .save({ login, email, password, langKey: this.translateService.currentLang })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+        .subscribe({ next: () => (this.successM()) , error: response => this.processError(response) });
     }
   }
 
   private processError(response: HttpErrorResponse): void {
+    Swal.fire({
+      icon:'error',
+      title: 'Revisa el formulario',
+    })
     if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
       this.errorUserExists = true;
     } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {
@@ -69,5 +75,15 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+  private successM():void{
+    
+    Swal.fire({
+      icon:'success',
+      title: 'Registro realizado',
+      text: 'Ingresa a tu correo para activar tu usuario',
+    })
+    this.success=true
+    this.router.navigate([''])
   }
 }

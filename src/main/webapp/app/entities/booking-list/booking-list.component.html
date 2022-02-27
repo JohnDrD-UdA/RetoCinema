@@ -1,0 +1,43 @@
+
+<div *ngIf="bookings.length!==0">
+    <div  class="row" style="padding: 5px;" *ngFor="let i of bookings">
+        <div class="card border-primary rounded" style="width: 100%;">
+            <div class="card-header">
+                <h4 style="margin-left:30px;"> {{i[0].moviefunction?.movie?.name}}</h4>
+                <h5 style="margin-left:30px;">reserva codigo: {{i[0].booking?.id}}</h5>
+            </div>
+            <div class="card-body">
+                    <h5 class="card-title" style="margin-left:30px;">Sillas reservadas:</h5>
+                    <div class="row"  style="margin-left:30px;">
+                        <div class="col-sm-auto" style="width:max-content; padding: 5px;" *ngFor="let j of i">
+                            <button class="btn btn-info rounded" style="width: max-content;" (click)="selectFreeChair(j)">
+                                    
+                                <div class="text-nowrap" style="width: 100%; height: 100%;">{{j.location}}</div>
+                                
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            <div class="card-footer" style="text-align: right;">
+                <button type="button" class="btn btn-warning" [disabled]="tofree.length===0" (click)="freeChairs()">
+                    <fa-icon icon="trash-alt" [fixedWidth]="true"></fa-icon>    
+                    <span>Liberar</span>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteBooking(i[0].booking?.id)">
+                    <fa-icon icon="times" [fixedWidth]="true"></fa-icon>    
+                    <span>Borrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="bookings.length===0">
+    <span class="card" style="align-items: center; text-align: center;">
+        <h2 class="card-title"> Aun no tienes reservas!</h2>
+        <div class="card-body">
+            <p class="card-text">Haz click aqui para ver nuestra cartelera</p>
+            <button class="btn btn-primary" (click)="goLogIn()">Ir a cartelera</button>
+        </div>
+    </span>
+</div>
+

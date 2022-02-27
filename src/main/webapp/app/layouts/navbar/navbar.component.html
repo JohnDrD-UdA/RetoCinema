@@ -1,8 +1,7 @@
-<nav data-cy="navbar" class="navbar navbar-light navbar-expand-md bg-light">
-  <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+<nav data-cy="navbar" class="navbar navbar-expand-md bc">
+  <a class="navbar-brand logo" style="color: white" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
-    <span jhiTranslate="global.title" class="navbar-title">CinemasCidenet</span>
-    <span class="navbar-version">{{ version }}</span>
+    <span jhiTranslate="global.title" class="navbar-title">Cinemas Cidenet</span>
   </a>
   <a
     class="navbar-toggler d-lg-none"
@@ -26,9 +25,17 @@
           </span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="billboard">
+          <span>
+            <fa-icon icon="list"></fa-icon>
+            <span>Cartelera</span>
+          </span>
+        </a>
+      </li>
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
       <li
-        *ngSwitchCase="true"
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         ngbDropdown
         class="nav-item dropdown pointer"
         display="dynamic"
@@ -42,6 +49,66 @@
           </span>
         </a>
         <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="hall"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.hall">Hall</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="movie"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.movie">Movie</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="moviefunction"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.moviefunction">Function Movie</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="booking"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.booking">Booking</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="chair"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"
+            >
+              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+              <span jhiTranslate="global.menu.entities.chair">Chair</span>
+            </a>
+          </li>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
         </ul>
       </li>
@@ -139,6 +206,10 @@
             <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="collapseNavbar()" data-cy="settings">
               <fa-icon icon="wrench" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.account.settings">Settings</span>
+            </a>
+            <a class="dropdown-item" routerLink="/BookingList" routerLinkActive="active">
+              <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+              <span>reservas</span>
             </a>
           </li>
           <li *ngSwitchCase="true">

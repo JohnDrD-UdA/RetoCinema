@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+  <head>
+    <title th:text="#{email.activation.title}">JHipster activation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+  </head>
+  <body >
+      <div style="background-color: rgb(3, 3, 3) ; border: 10px solid rgb(1, 16, 228); border-radius: 20px; padding: 30px;">
+        <h1 th:text="#{email.test.greeting(${user.login})}" style="color: white; font-size: large;">Dear</h1>
+        <h3 th:text="#{email.test.text1(${Movie.name})}" style="color: white;">eggman is here</h3>
+        <img style="height: 300px; width: 100%; margin: 5px;" [src]="'data:' + Movie.posterContentType + ';base64,' + Movie.poster">
+        <p>
+          <span th:text="#{email.test.text2}" style="color: white;">Regards, </span>
+          <br />
+          <em th:text="#{email.signature}" style="color: white;">JHipster.</em>
+        </p>
+      </div>
+  </body>
+</html>

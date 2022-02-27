@@ -1,0 +1,26 @@
+{
+  "cinemasCidenetApp": {
+    "hall": {
+      "home": {
+        "title": "Halls",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Hall",
+        "createOrEditLabel": "Crear o editar Hall",
+        "notFound": "Ningún Halls encontrado"
+      },
+      "created": "Un nuevo Hall ha sido creado con el identificador {{ param }}",
+      "updated": "Un Hall ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Hall ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Hall {{ id }}?"
+      },
+      "detail": {
+        "title": "Hall"
+      },
+      "id": "ID",
+      "cols_hall": "Cols Hall",
+      "rows_hall": "Rows Hall",
+      "name": "Name"
+    }
+  }
+}

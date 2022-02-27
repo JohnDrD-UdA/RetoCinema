@@ -12,9 +12,16 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 300;
+  font-weight: 300
 }
+body{
+  background-image: url('../images/pexels-tima-miroshnichenko-7991178.jpg');   
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%
 
+    
+}
 a:hover {
   /* make sure browsers use the pointer cursor for anchors, even with no href */
   cursor: pointer;
@@ -75,6 +82,42 @@ Generic styles
 
 .footer {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+.footer-clean{
+  background-color: rgba(3, 0, 151, 0.705);
+  color: white;
+  width: 100%;
+  
+}
+@media (max-width:767px) {
+  .footer-clean{
+    align-items: baseline;
+    text-align: left;
+    width: 100%;
+    
+  }
+}
+.footer-info{
+  width: auto;
+}
+@media (max-width:767px) {
+  .footer-info{
+  width: 100%;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
 }
 
 .hand,

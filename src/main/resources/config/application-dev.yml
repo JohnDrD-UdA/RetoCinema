@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/CinemasCidenet?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/cinema_cidenet?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
-    password:
+    password: Qpmeac-567
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -48,10 +48,10 @@ spring:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
   mail:
-    host: localhost
-    port: 25
-    username:
-    password:
+    host: mail.cyvservice.com.co
+    port: 26
+    username: cinemacidenet@cyvservice.com.co
+    password: Camilo123.
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:

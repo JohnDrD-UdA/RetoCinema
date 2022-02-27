@@ -6,8 +6,282 @@ Main page styles
   display: inline-block;
   width: 347px;
   height: 497px;
-  background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
+  background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
   background-size: contain;
+}
+.site-head{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  line-height: 1;
+  font-family:'Courier New', Courier, monospace;
+  display: inline;
+  
+}
+.site-head .sitehead1
+{   display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  height: 30%;
+  text-align: center;
+}
+.center
+{
+  margin: auto;
+}
+.contendorFormulario{
+  background-color: rgba(255, 255, 255, 0.452);
+  width: 50%;
+  justify-content: center;
+  display: block;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0,0, .7);
+  height:max-content;
+  padding: 10px;
+}
+.LogIn{
+  align-items: center;
+  font-family: 'Advent Pro', sans-serif;
+}
+.contendorFormulario h2
+  {
+      text-align: center;
+      font-family: 'Advent Pro', sans-serif;
+      font-size: 50px  
+  }
+.blackBar{
+  background-color:rgb(44, 44, 58);
+  height: 50px;
+  width:auto;
+  padding: 5px;
+}
+.navbar{
+  background-color: darkslategrey;
+  height: 50px;
+  padding: auto;
+}
+.textCenter{
+  text-align: center;
+}
+.input
+{
+  align-items:center ;
+  padding: 5px;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  width: 50%;
+}
+.contenedorInfo{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.contendor{
+  display: block;
+  align-items: center;
+  padding: 10px;
+
+}
+.Buttond{
+  display: block;
+  text-align: center;
+  font-family:'Advent Pro', sans-serif; ;
+  font-size: 30px;
+  letter-spacing: 1px;
+  background-color:  rgb(255, 255, 255);
+  color: rgb(43, 42, 42);
+  width: 65%;
+  padding: 12px 20px;
+  font-weight: 400;
+
+  border-radius: 20px;
+
+}
+.DocType
+{ display: flexbox;
+  font-size: 30 px;
+  align-items: center;
+
+}
+
+.shade{
+  box-shadow: 5px;  
+}
+.footer-clean {
+  padding:50px 0;
+  background-color:rgba(1, 1, 41, 0.486);
+  color:#4b4c4d;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid rgb(44, 44, 58);
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+.row{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+}
+.row>div{
+    width: 25%;
+    padding: 20px;
+    color:rgb(255, 255, 255);
+}
+.NavBarMain{
+  text-align: center;
+  font-family: 'Advent Pro', sans-serif;
+  display:  flex;
+  color: white;
+  background-color: rgb(43, 42, 42);
+}
+.NavBarMain >h1{
+  width: 25%;
+  padding: 10px;
+
+}
+.NavBarMain >h1>a{
+  color: white;
+
+}
+.Banner{
+  font-size: 20px;
+  background-color:rgb(43, 42, 42); 
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  
+}
+.Banner>h1{
+  color: white;
+  text-align: right;
+  font-family: 'Advent Pro', sans-serif;
+}
+
+.SideNews{
+  display: block;
+  width: 33%;
+  background-color: aliceblue;
+  height: 500px;
+}
+.MainSection{
+ width: 100%;
+ height: 1000px;
+ background-size: 100% auto;
+ margin: 10px;
+ display:flex;
+ align-items: center;
+  background-color: rgba(0, 0, 0, 0);;
+}
+.MainSection .Container{
+  width: 66%;
+  display:flex;
+  height: 500px;
+}
+.Carrusel{
+  height: 75%;
+  background-color: blue;
+}
+
+.Novedades{
+  height: 25%;
+  background-color:  red;
+}
+.titlecard{
+padding: auto;
+margin: 10px;
+width: 30%;
+height: fit-content;
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+
+}
+@media (max-width:767px) {
+.titlecard{
+  padding: auto;
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+
+ }
+
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -17,7 +291,8 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .hipster {
-    background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
+    background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
     background-size: contain;
   }
 }
+

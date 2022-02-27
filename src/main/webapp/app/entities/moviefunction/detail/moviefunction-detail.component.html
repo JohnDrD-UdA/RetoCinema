@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="moviefunction">
+      <h2 data-cy="moviefunctionDetailsHeading"><span jhiTranslate="cinemasCidenetApp.moviefunction.detail.title">Moviefunction</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ moviefunction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.moviefunction.movie_date_time">Movie Date Time</span></dt>
+        <dd>
+          <span>{{ moviefunction.movie_date_time }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.moviefunction.active_movie_function">Active Movie Function</span></dt>
+        <dd>
+          <span>{{ moviefunction.active_movie_function }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.moviefunction.movie">Movie</span></dt>
+        <dd>
+          <div *ngIf="moviefunction.movie">
+            <a [routerLink]="['/movie', moviefunction.movie?.id, 'view']">{{ moviefunction.movie?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.moviefunction.hall">Hall</span></dt>
+        <dd>
+          <div *ngIf="moviefunction.hall">
+            <a [routerLink]="['/hall', moviefunction.hall?.id, 'view']">{{ moviefunction.hall?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/moviefunction', moviefunction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

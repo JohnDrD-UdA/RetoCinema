@@ -1,0 +1,29 @@
+{
+  "cinemasCidenetApp": {
+    "movie": {
+      "home": {
+        "title": "Movies",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Movie erstellen",
+        "createOrEditLabel": "Movie erstellen oder bearbeiten",
+        "notFound": "Keine Movies gefunden"
+      },
+      "created": "Movie erstellt mit ID {{ param }}",
+      "updated": "Movie aktualisiert mit ID {{ param }}",
+      "deleted": "Movie gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Movie {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Movie"
+      },
+      "id": "ID",
+      "name": "Name",
+      "gendre": "Gendre",
+      "synopsis": "Synopsis",
+      "movie_format": "Movie Format",
+      "movie_length": "Movie Length",
+      "poster": "Poster"
+    }
+  }
+}

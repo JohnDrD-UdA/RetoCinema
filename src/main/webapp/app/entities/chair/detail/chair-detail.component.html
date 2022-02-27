@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="chair">
+      <h2 data-cy="chairDetailsHeading"><span jhiTranslate="cinemasCidenetApp.chair.detail.title">Chair</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ chair.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.chair.location">Location</span></dt>
+        <dd>
+          <span>{{ chair.location }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.chair.avaible_chair">Avaible Chair</span></dt>
+        <dd>
+          <span>{{ chair.avaible_chair }}</span>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.chair.booking">Booking</span></dt>
+        <dd>
+          <div *ngIf="chair.booking">
+            <a [routerLink]="['/booking', chair.booking?.id, 'view']">{{ chair.booking?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="cinemasCidenetApp.chair.moviefunction">Moviefunction</span></dt>
+        <dd>
+          <div *ngIf="chair.moviefunction">
+            <a [routerLink]="['/moviefunction', chair.moviefunction?.id, 'view']">{{ chair.moviefunction?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/chair', chair.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

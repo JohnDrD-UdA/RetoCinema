@@ -1,0 +1,95 @@
+<div>
+  <h2 id="page-heading" data-cy="MovieHeading">
+    <span jhiTranslate="cinemasCidenetApp.movie.home.title">Movies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="cinemasCidenetApp.movie.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-movie"
+        [routerLink]="['/movie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="cinemasCidenetApp.movie.home.createLabel"> Create a new Movie </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="movies?.length === 0">
+    <span jhiTranslate="cinemasCidenetApp.movie.home.notFound">No movies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="movies && movies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="cinemasCidenetApp.movie.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gendre">
+            <span jhiTranslate="cinemasCidenetApp.movie.gendre">Gendre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="synopsis">
+            <span jhiTranslate="cinemasCidenetApp.movie.synopsis">Synopsis</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="movie_format">
+            <span jhiTranslate="cinemasCidenetApp.movie.movie_format">Movie Format</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="movie_length">
+            <span jhiTranslate="cinemasCidenetApp.movie.movie_length">Movie Length</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="poster">
+            <span jhiTranslate="cinemasCidenetApp.movie.poster">Poster</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let movie of movies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/movie', movie.id, 'view']">{{ movie.id }}</a>
+          </td>
+          <td>{{ movie.name }}</td>
+          <td>{{ movie.gendre }}</td>
+          <td>{{ movie.synopsis }}</td>
+          <td>{{ movie.movie_format }}</td>
+          <td>{{ movie.movie_length }}</td>
+          <td>
+            <a *ngIf="movie.poster" (click)="openFile(movie.poster, movie.posterContentType)">
+              <img [src]="'data:' + movie.posterContentType + ';base64,' + movie.poster" style="max-height: 30px" alt="movie image" />
+            </a>
+            <span *ngIf="movie.poster">{{ movie.posterContentType }}, {{ byteSize(movie.poster) }}</span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/movie', movie.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/movie', movie.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(movie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

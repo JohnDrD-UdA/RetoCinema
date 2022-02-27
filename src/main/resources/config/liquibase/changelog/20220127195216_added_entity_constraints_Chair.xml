@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Chair.
+    -->
+    <changeSet id="20220127195216-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="booking_id"
+                                 baseTableName="chair"
+                                 constraintName="fk_chair__booking_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="booking"/>
+
+        <addForeignKeyConstraint baseColumnNames="moviefunction_id"
+                                 baseTableName="chair"
+                                 constraintName="fk_chair__moviefunction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="moviefunction"/>
+    </changeSet>
+</databaseChangeLog>

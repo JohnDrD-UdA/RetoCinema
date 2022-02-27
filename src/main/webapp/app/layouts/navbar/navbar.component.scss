@@ -14,14 +14,21 @@ Navbar
 .profile-image {
   height: 1.75em;
   width: 1.75em;
+  color: white;
+}
+.bc{
+  background-color: rgba(3, 0, 151, 0.486);
+  color: white;
 }
 
 .navbar {
   padding: 0.2rem 1rem;
+  height: 100px;
   .dropdown-item.active,
   .dropdown-item.active:focus,
   .dropdown-item.active:hover {
-    background-color: $dark;
+    background-color: rgba(3, 0, 151, 0.486);
+    color: white;
   }
 
   ul.navbar-nav {
@@ -32,11 +39,13 @@ Navbar
 
   a.nav-link {
     font-weight: 400;
+    color: white;
   }
 
   .navbar-toggler {
     &:hover {
       color: $navbar-dark-hover-color;
+      color: white;
     }
   }
 }

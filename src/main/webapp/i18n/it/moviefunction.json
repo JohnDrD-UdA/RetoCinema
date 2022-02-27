@@ -1,0 +1,27 @@
+{
+  "cinemasCidenetApp": {
+    "moviefunction": {
+      "home": {
+        "title": "Moviefunctions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Moviefunction",
+        "createOrEditLabel": "Genera o modifica un Moviefunction",
+        "notFound": "No Moviefunctions found"
+      },
+      "created": "&Egrave; stato generato un nuovo Moviefunction con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Moviefunction identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Moviefunction con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Moviefunction {{ id }}?"
+      },
+      "detail": {
+        "title": "Moviefunction"
+      },
+      "id": "ID",
+      "movie_date_time": "Movie Date Time",
+      "active_movie_function": "Active Movie Function",
+      "movie": "Movie",
+      "hall": "Hall"
+    }
+  }
+}
